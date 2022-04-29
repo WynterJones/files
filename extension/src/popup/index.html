@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<link
+  href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+  rel="stylesheet"
+/>
+<style type="text/css">
+  #mainPopup {
+    background: #f0f2f5;
+    width: 400px;
+    font-family: Helvetica, Ubuntu, Arial, sans-serif;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  P {
+    font-size: 1.2em;
+  }
+  .button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: #444;
+    background: #fff;
+    font-weight: 800;
+  }
+  .button.primary {
+    background: #8e322c;
+    border-color: #722520;
+    color: #fff;
+  }
+  .wrapper {
+    padding: 20px;
+    border-bottom: 1px solid #d9dbde;
+  }
+  .bg-light {
+    background: #f0f2f5;
+  }
+</style>
+
+<script src="javascript.js"></script>
+<div id="mainPopup">
+  <div class="wrapper bg-light flex justify-between items-center">
+    <img src="images/logo.png" style="width: 150px; height: auto" alt="" />
+    <div>
+      <a class="button" href="https://app.grouphero.io/" target="_blank">
+        My Account
+      </a>
+    </div>
+  </div>
+  <div class="wrapper bg-white">
+    <p>
+      GroupHero helps you communicate with your audience by exporting your
+      members question data from Facebook. Just go to your Facebook Group
+      Members Approval page and click reload to see the GroupHero plugin on the
+      page.
+    </p>
+    <span id="testing">hey</span>
+  </div>
+  <div class="wrapper bg-light" style="border: none">
+    <a
+      class="button primary"
+      id="backend-link"
+      href="chrome-extension://ggeoipdfbodjjgephjfnjghijjgnlkdg/grouphero/dashboard.html"
+      target="_blank"
+    >
+      Open Dashboard
+    </a>
+
+    <a class="button" href="https://app.grouphero.io/training" target="_blank">
+      Training
+    </a>
+  </div>
+</div>

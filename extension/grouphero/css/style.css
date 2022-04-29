@@ -1,0 +1,48 @@
+body {
+  font-family: "Roboto Condensed", sans-serif;
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#popupOverlay {
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+#popupQuestionData {
+  z-index: 999;
+  width: 600px;
+  top: 50px;
+  left: 50%;
+  right: 50%;
+  margin-left: -300px;
+}
+
+#popupExport {
+  z-index: 999;
+  width: 400px;
+  top: 50px;
+  left: 50%;
+  right: 50%;
+  margin-left: -200px;
+}
+
+#popupExportForm {
+  z-index: 999;
+  width: 400px;
+  top: 50px;
+  left: 50%;
+  right: 50%;
+  margin-left: -200px;
+}
+
+#popupSettings {
+  z-index: 999;
+  width: 400px;
+  top: 50px;
+  left: 50%;
+  right: 50%;
+  margin-left: -200px;
+}

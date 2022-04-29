@@ -1,0 +1,118 @@
+.x_grouphero--wrapper {
+  padding: 20px;
+  border-radius: 8px;
+  background: #242526;
+  color: #fff;
+  margin: 0 15px;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+#x_grouphero_synced_members {
+  padding: 7px 10px;
+  line-height: none;
+  border-radius: 100%;
+  background: #3a3b3c;
+  margin: 0 3px;
+}
+.x_grouphero--blue-cirle {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background: #1db954;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.x_grouphero--approve {
+  border: none;
+  color: #fff;
+  background: #1db954;
+  pointer-events: auto;
+  border-radius: 6px;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 36px;
+  width: calc(100% + 6px);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.x_grouphero--approve-warning {
+  border: none;
+  color: #fff;
+  background: #b91d1d;
+  pointer-events: auto;
+  border-radius: 6px;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 36px;
+  width: calc(100% + 6px);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.x_grouphero--bulk-approve {
+  border: none;
+  color: #fff;
+  background: #a71db9;
+  pointer-events: auto;
+  border-radius: 6px;
+  height: 36px;
+  width: calc(100% + 6px);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 10px;
+  width: 200px;
+  text-align: center;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.x_grouphero--progressWrapper {
+  height: 20px;
+}
+
+.x_grouphero--progress {
+  width: 200px;
+  height: 20px;
+  display: inline-block;
+  margin-left: 5px;
+  border-radius: 10px;
+  border: 1px solid #c452dd;
+  overflow: hidden;
+}
+
+.x_grouphero--bar {
+  width: 0%;
+  height: 20px;
+  background-color: #9d36b3;
+  color: white;
+  text-align: center;
+  line-height: 2em;
+  animation: w70;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes w70 {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}

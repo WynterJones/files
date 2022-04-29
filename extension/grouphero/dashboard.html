@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title id="title">GroupHero - Facebook Group Manager Options</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" media="screen" />
+    <script src="js/engine.js"></script>
+  </head>
+  <body style="background: #f0f2f5">
+    <div class="container p-6">
+      <img
+        src="images/logo.png"
+        style="width: 250px; margin: 0 auto; margin-bottom: 15px"
+        alt=""
+      />
+      <h2 class="text-xl font-bold text-center mb-2">
+        Manage All The Approved Group Members
+      </h2>
+      <div class="text-center">
+        <span
+          id="apiKey-isActivated"
+          class="rounded py-1.5 px-3 text-green-600 font-medium mr-1"
+          style="display: none"
+        >
+          <i class="fas fa-check-circle mr-1"></i>
+          Connected
+        </span>
+        <span
+          id="apiKey-notActivated"
+          class="rounded py-1.5 px-3 text-red-600 font-medium mr-1"
+          style="display: none"
+        >
+          <i class="fas fa-times-circle mr-1"></i>
+          Not Connected
+        </span>
+      </div>
+    </div>
+    <div class="container bg-white shadow-xl p-6">
+      <!-- <div
+        id="apiKey-wrapper"
+        style="display: none"
+        class="p-3 bg-gray-100 border border-gray-300 mb-6"
+      >
+        <div style="width: 300px" class="mx-auto">
+          <input
+            type="text"
+            id="apiKey"
+            class="
+              rounded
+              py-1.5
+              px-3
+              text-gray-600
+              border border-gray-200
+              font-medium
+              mr-1
+            "
+            placeholder="GroupHero API Key"
+          />
+          <button
+            id="activate"
+            class="
+              rounded
+              py-1.5
+              px-3
+              bg-green-50
+              text-green-600
+              border border-green-200
+              font-medium
+              mr-1
+            "
+          >
+            <i class="fas fa-plug mr-1"></i> Activate
+          </button>
+        </div>
+      </div> -->
+      <div>
+        <div id="mainWrapper" class="flex justify-between items-center">
+          <div>
+            <button
+              id="reload"
+              class="rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mr-1"
+            >
+              <i class="fas fa-sync mr-1"></i> Reload
+            </button>
+          </div>
+          <div id="rowCount" class="text-center text-gray-500 text-sm">
+            <p>Showing All Members (0)</p>
+          </div>
+          <div>
+            <button
+              id="settings"
+              class="rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mr-1"
+            >
+              <i class="fas fa-cog"></i>
+            </button>
+            <button
+              id="export"
+              class="rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium"
+            >
+              <i class="fas fa-file-export mr-1"></i> Google Sheets
+            </button>
+
+            <button
+              id="exportForm"
+              class="rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium"
+            >
+              <i class="fas fa-file-export mr-1"></i> HTML Auto-Responder
+            </button>
+            <button
+              id="exportCSV"
+              class="rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium ml-1"
+            >
+              <i class="fas fa-download mr-1"></i> Download .CSV
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-6" />
+      <div id="data">
+        <div class="border border-gray-100 rounded p-6 text-center text-lg">
+          <p class="text-xl">
+            Need help getting started?
+            <strong
+              ><a href="#" class="underline"
+                >Click Here to Watch Help Video</a
+              ></strong
+            >
+          </p>
+          <p class="mt-2">
+            You can export to a CSV File, Google Sheets or HTML Auto-Responder
+            code.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container text-center py-8 text-gray-500">
+      <p>Copyright &copy; 2022 - All Rights Reserved - grouphero.io</p>
+    </div>
+
+    <div
+      id="popupOverlay"
+      class="fixed w-full h-screen fixed top-0 left-0"
+      style="display: none"
+    ></div>
+
+    <div
+      id="popupQuestionData"
+      class="fixed shadow-xl mx-auto rounded bg-white p-6"
+      style="display: none"
+    >
+      <div class="flex justify-between items-center">
+        <h3 class="text-xl font-bold">
+          <span id="qa-name">Name</span>
+        </h3>
+        <div>
+          <button
+            class="closePopup rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mr-1"
+          >
+            <i class="fas fa-times mr-1"></i> Close
+          </button>
+        </div>
+      </div>
+      <p>
+        <span
+          ><i class="fas text-gray-500 fa-home mr-1"></i>
+          <span id="qa-location" class="mr-2">Ontario, Canada</span></span
+        >
+        <span
+          ><i class="far text-gray-500 fa-envelope mr-1"></i>
+          <span id="qa-email">mail@mail.com</span></span
+        >
+      </p>
+      <hr class="my-3 border-gray-100" />
+      <div
+        id="qaData"
+        style="max-height: 500px"
+        class="overflow-x-hidden"
+      ></div>
+    </div>
+
+    <div
+      id="popupSettings"
+      class="fixed shadow-xl mx-auto rounded bg-white p-6"
+      style="display: none"
+    >
+      <div class="flex mb-6 justify-between items-center">
+        <h3 class="text-xl font-bold">Settings</h3>
+        <div>
+          <button
+            class="closePopup rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mr-1"
+          >
+            <i class="fas fa-times mr-1"></i> Close
+          </button>
+        </div>
+      </div>
+      <hr class="border-gray-200 my-3" />
+      <label>Your Email Address</label>
+      <input
+        type="text"
+        value=""
+        placeholder="Your Email Address"
+        class="apiKeySettingsEmail block w-full rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mb-2"
+      />
+
+      <label>GroupHero API Key</label>
+      <input
+        type="text"
+        value=""
+        placeholder="API Key Here"
+        class="apiKeySettings block w-full rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mr-1"
+      />
+
+      <button
+        id="clear"
+        class="rounded py-1.5 px-3 bg-red-50 text-red-600 border border-red-200 font-medium mt-2"
+      >
+        <i class="fas fa-times-circle mr-1"></i> Delete Data
+      </button>
+
+      <button
+        id="saveSettings"
+        class="rounded py-1.5 px-3 text-green-600 bg-green-100 border border-green-200 font-medium mt-3 block w-full mt-2"
+      >
+        Save Changes
+      </button>
+    </div>
+
+    <div
+      id="popupExport"
+      class="fixed shadow-xl mx-auto rounded bg-white p-6"
+      style="display: none"
+    >
+      <div>
+        <div id="exporting" class="text-center p-6" style="display: none">
+          <h3 class="mb-2 font-bold text-lg">
+            <i class="fas fa-spinner fa-spin mr-1"></i> Exporting...
+          </h3>
+          <p class="text-gray-500">
+            Please wait while your data is being exported. This maybe take a few
+            seconds.
+          </p>
+        </div>
+        <div id="exportList">
+          <div class="flex mb-6 justify-between items-center">
+            <h3 class="text-xl font-bold">Export to Google Sheets</h3>
+            <div>
+              <button
+                class="closePopup rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mr-1"
+              >
+                <i class="fas fa-times mr-1"></i> Close
+              </button>
+            </div>
+          </div>
+
+          <div class="my-6">
+            <h4 class="font-medium">Google Sheets ID</h4>
+            <input
+              type="text"
+              id="googleSheetsURL"
+              class="w-full rounded border text-gray-600 p-1 my-2"
+              value=""
+            />
+            <button
+              id="sendToGoogleSheets"
+              class="rounded py-1.5 border border-gray-200 bg-gray-50 text-gray-600 block font-medium text-lg w-full"
+            >
+              Send to GoogleSheets
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      id="popupExportForm"
+      class="fixed shadow-xl mx-auto rounded bg-white p-6"
+      style="display: none"
+    >
+      <div>
+        <div id="exporting2" class="text-center p-6" style="display: none">
+          <h3 class="mb-2 font-bold text-lg">
+            <i class="fas fa-spinner fa-spin mr-1"></i> Exporting...
+          </h3>
+          <p class="text-gray-500">
+            Please wait while your data is being exported. This maybe take a few
+            seconds.
+          </p>
+        </div>
+        <div id="exportList2">
+          <div class="flex mb-6 justify-between items-center">
+            <h3 class="text-xl font-bold">Export to HTML Form</h3>
+            <div>
+              <button
+                class="closePopup rounded py-1.5 px-3 text-gray-600 border border-gray-200 font-medium mr-1"
+              >
+                <i class="fas fa-times mr-1"></i> Close
+              </button>
+            </div>
+          </div>
+
+          <div class="my-6">
+            <p class="text-xs mt-2 text-gray-500">
+              <strong>HOW TO:</strong> Copy and paste the code below into your
+              and change the name input value to be <span>{NAME}</span> and
+              <span>{EMAIL} for the email field.</span>
+            </p>
+            <textarea
+              type="text"
+              id="htmlformcode"
+              class="w-full rounded border text-gray-600 p-1 my-2"
+              style="min-height: 150px"
+            ></textarea>
+            <button
+              id="saveFormCode"
+              class="rounded py-1.5 border border-green-200 bg-green-50 text-green-600 block font-medium text-lg w-full"
+            >
+              Save HTML Form Code
+            </button>
+
+            <button
+              id="exportFormCode"
+              class="rounded py-1.5 border border-gray-200 bg-gray-50 text-gray-600 block font-medium text-lg w-full mt-2"
+            >
+              Export to Form Code
+            </button>
+            <p class="text-xs mt-2 text-gray-500">
+              * This will take some time as each email you want to export will
+              trigger randomly between 1-4 seconds each request. This is used to
+              keep requests slow. We don't recommend using this method for
+              exporting more than 50 members at a time. It is recommended to
+              upload CSV file to your Auto Responder provider is large dataset.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="hiddenform" class="hidden"></div>
+    <iframe name="hidden_iframe" class="hidden"></iframe>
+  </body>
+</html>
